@@ -2,6 +2,16 @@
 
 use Illuminate\Database\Seeder;
 
+// Illuminate
+// Database
+// Eloquent
+// Model
+use Illuminate\Database\Eloquent\Model;
+
+// app and user
+// app/User.php
+use App\User;
+
 class DatabaseSeeder extends Seeder
 {
   /**
@@ -11,23 +21,34 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-      // $this->call(UsersTableSeeder::class);
+    // Basically, it means this model can do mass assign values
+    // static method
+    Model::unguard();
 
-    //delete();
+    // clear up the users table
+    DB::table('users')->delete();  
 
+    // user array
     $users = array(
-            ['name' => 'Ryan Chenkie', 'email' => 'ryanchenkie@gmail.com', 'password' => Hash::make('secret')],
-            ['name' => 'Chris Sevilleja', 'email' => 'chris@scotch.io', 'password' => Hash::make('secret')],
-            ['name' => 'Holly Lloyd', 'email' => 'holly@scotch.io', 'password' => Hash::make('secret')],
-            ['name' => 'Adnan Kukic', 'email' => 'adnan@scotch.io', 'password' => Hash::make('secret')],
+      // Name
+      // Email
+      // Password, it use Hask::make
+      // password changes to test
+      ['name' => 'Ryan Chenkie', 'email' => 'ryanchenkie@gmail.com', 'password' => Hash::make('test')],
+      ['name' => 'Chris Sevilleja', 'email' => 'chris@scotch.io', 'password' => Hash::make('test')],
+      ['name' => 'Holly Lloyd', 'email' => 'holly@scotch.io', 'password' => Hash::make('test')],
+      ['name' => 'Adnan Kukic', 'email' => 'adnan@scotch.io', 'password' => Hash::make('test')],
     );
         
-    // Loop through each user above and create the record for them in the database
+    // Loop through each user
     foreach ($users as $user)
     {
-        User::create($user);
+      // create user
+      // static method
+      User::create($user);
     }
 
+    // model regard
     Model::reguard();
     
   }
